@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Container, 
@@ -34,7 +34,7 @@ export const OrderDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Fetch order details
-  const fetchOrder = async () => {
+  const fetchOrder = useCallback(async () => {
     if (!id) {
       setError('Order ID is required');
       setLoading(false);
@@ -53,7 +53,7 @@ export const OrderDetail: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id, getOrder]);
 
   useEffect(() => {
     fetchOrder();
