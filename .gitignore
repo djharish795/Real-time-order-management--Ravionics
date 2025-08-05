@@ -1,0 +1,49 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+/order-service/node_modules
+/order-ui/node_modules
+
+# testing
+/coverage
+/order-service/coverage
+/order-ui/coverage
+
+# production
+/build
+/order-service/dist
+/order-ui/build
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# AWS
+.aws/
+aws-exports.js
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

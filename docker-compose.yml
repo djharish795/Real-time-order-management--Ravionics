@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Backend service
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - PORT=8080
+      - AWS_REGION=us-east-1
+      - DYNAMODB_TABLE_NAME=orders
+      - S3_BUCKET_NAME=order-management-invoices
+      - SNS_TOPIC_ARN=arn:aws:sns:us-east-1:123456789012:order-notifications
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - ./order-service:/app
+      - /app/node_modules
+    depends_on:
+      - localstack
+    networks:
+      - order-network
+
+  # Frontend service
+  order-ui:
+    build:
+      context: ./order-ui
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080/api
+    volumes:
+      - ./order-ui:/app
+      - /app/node_modules
+    networks:
+      - order-network
+
+  # LocalStack for local AWS services (development only)
+  localstack:
+    image: localstack/localstack:2.0
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,dynamodb,sns
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - "./tmp/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - order-network
+
+networks:
+  order-network:
+    driver: bridge
+
+volumes:
+  localstack_data:
