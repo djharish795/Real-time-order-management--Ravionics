@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Container, 
   Row, 
   Col, 
-  Card, 
-  Form, 
-  Button, 
-  Alert,
-  ProgressBar 
+  Form
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faSave, 
   faArrowLeft, 
   faUpload, 
-  faCheck,
   faSpinner,
   faUser,
   faEnvelope,
@@ -24,7 +18,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { OrderService, CreateOrderData } from '../services/orderService';
-import { validateFile, FileValidationResult } from '../utils/helpers';
+import { validateFile } from '../utils/helpers';
 import ProfessionalLayout from '../components/ProfessionalLayout';
 import '../styles/Professional.css';
 import '../styles/ProfessionalLayout.css';

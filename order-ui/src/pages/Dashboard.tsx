@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button, Form, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faSearch, 
@@ -12,8 +11,6 @@ import {
   faArrowDown
 } from '@fortawesome/free-solid-svg-icons';
 import { useOrders } from '../hooks/useOrders';
-import { OrderTable } from '../components/OrderTable';
-import { Loading } from '../components/Loading';
 import { ErrorMessage } from '../components/ErrorMessage';
 import ProfessionalLayout from '../components/ProfessionalLayout';
 import { formatCurrency } from '../utils/helpers';

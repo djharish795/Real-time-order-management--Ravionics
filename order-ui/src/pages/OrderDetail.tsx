@@ -57,7 +57,7 @@ export const OrderDetail: React.FC = () => {
 
   useEffect(() => {
     fetchOrder();
-  }, [id]);
+  }, [id, fetchOrder]);
 
   // Handle invoice download
   const handleDownloadInvoice = () => {
